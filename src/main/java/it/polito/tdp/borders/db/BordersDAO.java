@@ -41,7 +41,7 @@ public class BordersDAO {
 		}
 	}
 
-	public List<Border> getCountryPairs(int anno) {
+	public List<Border> getCountryPairs(Map<Integer,Country> idMap,int anno) {
 
 		List <Border> result = new ArrayList<Border>();
 		String sql ="SELECT state1no as cc1, state2no as cc2, c.year as y "
@@ -56,7 +56,12 @@ public class BordersDAO {
 			ResultSet rs = st.executeQuery();
 			
 			while(rs.next()) {
-				Border
+				Country paese1 = idMap.get(rs.getInt("cc1"));
+				Country paese2 = idMap.get(rs.getInt("cc2"));
+				int yy = rs.getInt("y");
+				
+					result.add(new Border(paese1,paese2,yy));
+				
 			}
 			conn.close();
 			
