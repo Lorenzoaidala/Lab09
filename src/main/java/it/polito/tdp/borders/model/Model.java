@@ -22,16 +22,16 @@ public class Model {
 	}
 	
 	public void creaGrafo(int anno) {
-		grafo = new SimpleGraph(DefaultEdge.class);
+		grafo = new SimpleGraph<>(DefaultEdge.class);
 		
-		Graphs.addAllVertices(this.grafo, idMap.values());
+		//Graphs.addAllVertices(this.grafo, idMap.values());
 		
 		for(Border b : dao.getCountryPairs(idMap, anno)) {
-			DefaultEdge e = grafo.getEdge(b.getC2(), b.getC1());
-			if(e==null) {
-				Graphs.addEdge(this.grafo, b.getC1(), b.getC2(),b.getAnno());
-			}
+			this.grafo.addVertex(b.getC1());
+			this.grafo.addVertex(b.getC2());
+			this.grafo.addEdge(b.getC1(), b.getC2());
 		}
+		
 	}
 	
 	public int getNVertex() {
