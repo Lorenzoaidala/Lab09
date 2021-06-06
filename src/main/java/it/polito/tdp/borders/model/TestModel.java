@@ -20,6 +20,8 @@ public class TestModel {
 //		for (Country country : stats.keySet())
 //			System.out.format("%s %d\n", country, stats.get(country));		
 		
+		model.creaGrafo(1920);
+		System.out.println("Grafo creato con "+model.getNVertex()+" vertici e "+model.getNEdges()+" archi");
 	}
 
 }
